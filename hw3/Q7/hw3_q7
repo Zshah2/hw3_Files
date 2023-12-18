@@ -1,0 +1,30 @@
+// part a
+
+function isPrime(number) {
+    if (number <= 1) {
+        return false;
+    }
+    for (let i = 2; i <= Math.sqrt(number); i++) {
+        if (number % i === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// part B
+
+
+let primeNumbers = [];
+for (let i = 2; i <= 10000; i++) {
+    if (isPrime(i)) {
+        primeNumbers.push(i);
+    }
+}
+
+// Display the results
+console.log(primeNumbers);
+
+
+
+// part c

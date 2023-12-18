@@ -1,0 +1,77 @@
+// part a
+
+function isPrime(number) {
+    if (number <= 1) {
+        return false;
+    }
+    for (let i = 2; i <= Math.sqrt(number); i++) {
+        if (number % i === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// part B
+
+
+let primeNumbers = [];
+for (let i = 2; i <= 10000; i++) {
+    if (isPrime(i)) {
+        primeNumbers.push(i);
+    }
+}
+
+// Display the results
+console.log(primeNumbers);
+
+
+
+// part c
+
+
+// Original function without Math.sqrt
+function isPrimeWithoutSqrt(number) {
+    if (number <= 1) {
+        return false;
+    }
+    for (let i = 2; i <= number / 2; i++) {
+        if (number % i === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+let primeNumbersWithoutSqrt = [];
+for (let i = 2; i <= 10000; i++) {
+    if (isPrimeWithoutSqrt(i)) {
+        primeNumbersWithoutSqrt.push(i);
+    }
+}
+
+
+console.log(primeNumbersWithoutSqrt);
+
+// Function using Math.sqrt
+function isPrimeWithSqrt(number) {
+    if (number <= 1) {
+        return false;
+    }
+    for (let i = 2; i <= Math.sqrt(number); i++) {
+        if (number % i === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+let primeNumbersWithSqrt = [];
+for (let i = 2; i <= 10000; i++) {
+    if (isPrimeWithSqrt(i)) {
+        primeNumbersWithSqrt.push(i);
+    }
+}
+
+
+console.log(primeNumbersWithSqrt);

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Learning Program</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Multiplication Learning Program</h2>
+
+<!-- Grade Level Input -->
+<label for="gradeLevel">Select Grade Level:</label>
+<select id="gradeLevel">
+    <option value="1">Grade 1 (Single-digit numbers)</option>
+    <option value="2">Grade 2 (Up to two digits)</option>
+    <!-- Add more options for higher grades if needed -->
+</select>
+<br><br>
+
+<!-- Arithmetic Operation Input -->
+<label for="operationType">Select Operation Type:</label>
+<select id="operationType">
+    <option value="1">Addition</option>
+    <option value="2">Subtraction</option>
+    <option value="3">Multiplication</option>
+    <option value="4">Division</option>
+    <option value="5">Random</option>
+</select>
+<br><br>
+
+<!-- Start Button -->
+<button onclick="startLearning()">Start Learning</button>
+
+<!-- Output Container -->
+<div id="output"></div>
+
+<script>
+    function startLearning() {
+        // Get selected values
+        var gradeLevel = document.getElementById("gradeLevel").value;
+        var operationType = document.getElementById("operationType").value;
+
+        // Convert gradeLevel to the maximum number for multiplication
+        var maxNumber = gradeLevel * 10;
+
+        // Clear previous output
+        document.getElementById("output").innerHTML = '';
+
+        // Generate and display problems based on user input
+        for (var i = 0; i < 5; i++) { // Display 5 problems for demonstration
+            var num1 = Math.floor(Math.random() * maxNumber) + 1;
+            var num2 = Math.floor(Math.random() * maxNumber) + 1;
+            var result = calculateResult(num1, num2, operationType);
+
+            // Display the problem
+            var problemText = num1 + getOperationSymbol(operationType) + num2 + " = ";
+            document.getElementById("output").innerHTML += problemText;
+
+            // Allow user to input the answer
+            var inputField = document.createElement("input");
+            inputField.type = "text";
+            inputField.id = "answer" + i;
+            document.getElementById("output").appendChild(inputField);
+            document.getElementById("output").innerHTML += "<br>";
+        }
+    }
+
+    function calculateResult(num1, num2, operationType) {
+        switch (operationType) {
+            case "1":
+                return num1 + num2;
+            case "2":
+                return num1 - num2;
+            case "3":
+                return num1 * num2;
+            case "4":
+                return num1 / num2;
+            case "5":
+                // Randomly choose an operation
+                var randomOperation = Math.floor(Math.random() * 4) + 1;
+                return calculateResult(num1, num2, randomOperation.toString());
+        }
+    }
+
+    function getOperationSymbol(operationType) {
+        switch (operationType) {
+            case "1":
+                return " + ";
+            case "2":
+                return " - ";
+            case "3":
+                return " * ";
+            case "4":
+                return " / ";
+        }
+    }
+</script>
+
+</body>
+</html>

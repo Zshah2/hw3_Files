@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tortoise and Hare Race</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Tortoise and Hare Race Simulation</h1>
+<div id="race-track"></div>
+<button onclick="startRace()">Start Race</button>
+
+<script>
+function moveTortoise(position) {
+    const move = Math.floor(Math.random() * 10) + 1;
+    if (move >= 1 && move <= 5) {
+        return position + 3; // Fast plod
+    } else if (move >= 6 && move <= 7) {
+        return position - 6; // Slip
+    } else {
+        return position + 1; // Slow plod
+    }
+}
+
+function moveHare(position) {
+    const move = Math.floor(Math.random() * 10) + 1;
+    if (move >= 1 && move <= 2) {
+        return position + 9; // Big hop
+    } else if (move >= 3 && move <= 5) {
+        return position - 12; // Big slip
+    } else if (move >= 6 && move <= 8) {
+        return position + 1; // Small hop
+    } else {
+        return position - 2; // Small slip
+    }
+}
+
+function printRace(tortoise, hare) {
+    let track = '';
+    for (let i = 1; i <= 70; i++) {
+        if (i === tortoise && i === hare) {
+            track += 'OUCH! ';
+        } else if (i === tortoise) {
+            track += 'T ';
+        } else if (i === hare) {
+            track += 'H ';
+        } else {
+            track += '_ ';
+        }
+    }
+    document.getElementById('race-track').innerText = track;
+}
+
+function race() {
+    let tortoisePosition = 1;
+    let harePosition = 1;
+
+    function raceStep() {
+        tortoisePosition = moveTortoise(tortoisePosition);
+        harePosition = moveHare(harePosition);
+
+        printRace(tortoisePosition, harePosition);
+
+        if (tortoisePosition >= 70 && harePosition >= 70) {
+            alert("It's a tie!");
+        } else if (tortoisePosition >= 70) {
+            alert("TORTOISE WINS!!! YAY!!!");
+        } else if (harePosition >= 70) {
+            alert("Hare wins. Yuch.");
+        } else {
+            setTimeout(raceStep, 1000); // Continue the race after 1 second
+        }
+    }
+
+    raceStep();
+}
+
+function startRace() {
+    document.getElementById('race-track').innerText = '';
+    race();
+}
+</script>
+
+</body>
+</html>

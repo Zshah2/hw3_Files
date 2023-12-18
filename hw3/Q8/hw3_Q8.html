@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDUCATION GAME</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Multiplication Learning Game</h1>
+
+<div id="question-container"></div>
+<input type="text" id="answer" placeholder="Type your answer">
+<button onclick="checkAnswer()">Submit Answer</button>
+<p id="result"></p>
+
+<script>
+  // Function to generate a random question
+  function generateQuestion() {
+    var num1 = Math.floor(Math.random() * 9) + 1; // Random number between 1 and 9
+    var num2 = Math.floor(Math.random() * 9) + 1;
+
+    return { question: `How much is ${num1} times ${num2}?`, answer: num1 * num2 };
+  }
+
+  // Function to initialize the game
+  function initializeGame() {
+    currentQuestion = generateQuestion();
+    document.getElementById("question-container").textContent = currentQuestion.question;
+    document.getElementById("answer").value = "";
+    document.getElementById("result").textContent = "";
+  }
+
+  // Function to check the answer
+  function checkAnswer() {
+    var userAnswer = parseInt(document.getElementById("answer").value, 10);
+
+    if (userAnswer === currentQuestion.answer) {
+      document.getElementById("result").textContent = "Very good!";
+      initializeGame(); // Generate a new question
+    } else {
+      document.getElementById("result").textContent = "No. Please try again.";
+    }
+  }
+
+  // Initialize the game when the script begins execution
+  initializeGame();
+</script>
+</head>
+<body>
+    <h1>Computer-Assisted Instruction</h1>
+    <p>Enter the answer to the following problem:</p>
+    <p>How much is 2 times 2?</p>
+    <input type="text" id="answer">
+    <button onclick="checkAnswer()">Submit Answer</button>
+    <p id="response"></p>
+</body>
+</html>

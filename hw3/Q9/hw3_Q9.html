@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer-Assisted Instruction</title>
+    <script>
+        function checkAnswer() {
+            // Get the user's input
+            var userAnswer = document.getElementById("answer").value;
+
+            // Generate a random number between 1 and 4
+            var randomResponse = Math.floor(Math.random() * 4) + 1;
+
+            // Check if the answer is correct
+            switch (userAnswer.toLowerCase()) {
+                case "4":
+                    // Correct answer
+                    switch (randomResponse) {
+                        case 1:
+                            document.getElementById("response").innerHTML = "Very good!";
+                            break;
+                        case 2:
+                            document.getElementById("response").innerHTML = "Excellent!";
+                            break;
+                        case 3:
+                            document.getElementById("response").innerHTML = "Nice work!";
+                            break;
+                        case 4:
+                            document.getElementById("response").innerHTML = "Keep up the good work!";
+                            break;
+                    }
+                    break;
+                default:
+                    // Incorrect answer
+                    switch (randomResponse) {
+                        case 1:
+                            document.getElementById("response").innerHTML = "No. Please try again.";
+                            break;
+                        case 2:
+                            document.getElementById("response").innerHTML = "Wrong. Try once more.";

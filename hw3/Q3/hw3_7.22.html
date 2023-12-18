@@ -1,0 +1,23 @@
+<html>
+    <head><title>Encryption</title></head>
+    <body>
+        <div id = "msg"></div>
+    </body>
+    <script type = 'text/javascript'>
+        var num = (prompt('Enter 4-digit number to encrypt'));
+        var digits = [parseInt(num[0]), parseInt(num[1]), parseInt(num[2]), parseInt(num[3])];
+        // Replace each digit by (the digit itself + 7) modulus 10
+        for(var i = 0; i < 4; i++){
+            digits[i] = (digits[i] + 7) % 10;
+        }
+        // Swap first digit with third digit
+        var temp = digits[0];
+        digits[0] = digits[2];
+        digits[2] = temp;
+        // Swap second digit with fourth digit
+        var temp = digits[1];
+        digits[1] = digits[3];
+        digits[3] = temp;
+        document.getElementById("msg").innerHTML = "Encrypted integer: " + digits[0] + " " + digits[1] + " " + digits[2] + " " + digits[3];
+    </script>
+</html>

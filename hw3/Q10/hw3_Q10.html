@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Program</title>
+  <script>
+    let correctAnswers = 0;
+    let incorrectAnswers = 0;
+    let currentQuestionIndex = 0;
+
+    const questions = [
+      { question: "Question 1?", answer: "Answer 1" },
+      { question: "Question 2?", answer: "Answer 2" },
+      // Add more questions as needed
+    ];
+
+    function displayQuestion() {
+      const questionElement = document.getElementById('question');
+      questionElement.textContent = questions[currentQuestionIndex].question;
+    }
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById('answer').value;
+      const correctAnswer = questions[currentQuestionIndex].answer;
+
+      if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+        correctAnswers++;
+      } else {
+        incorrectAnswers++;
+      }
+
+      currentQuestionIndex++;
+
+      if (currentQuestionIndex < questions.length) {
+        displayQuestion();
+      } else {
+        // Calculate percentage
+        const percentage = (correctAnswers / (correctAnswers + incorrectAnswers)) * 100;
+
+        // Display result message
+        const resultMessage = percentage >= 75 ?
+          "Congratulations! You passed the quiz." :
+          "Please ask your instructor for extra help.";
+
+        alert(`${resultMessage}\nPercentage Correct: ${percentage.toFixed(2)}%`);
+
+        // Reset quiz for another student
+        resetQuiz();
+      }
+    }
+
+    function resetQuiz() {
+      currentQuestionIndex = 0;
+      correctAnswers = 0;
+      incorrectAnswers = 0;
+      displayQuestion();
+    }
+
+    window.onload = function () {
+      displayQuestion();
+    };
+  </script>
+</head>
+<body>
+  <h1>Quiz Program</h1>
+  <p id="question"></p>
+  <label for="answer">Your Answer:</label>
+  <input type="text" id="answer">
+  <button onclick="checkAnswer()">Submit Answer</button>
+
+  <script>
+    // Display the first question on page load
+    window.onload();
+  </script>
+</body>
+</html>

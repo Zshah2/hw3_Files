@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Rolling Simulation</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    // Function to simulate rolling a die
+    function rollDie() {
+        return Math.floor(Math.random() * 6) + 1; // Returns a random integer between 1 and 6
+    }
+
+    // Function to simulate rolling two dice and calculating the sum
+    function rollDice() {
+        return rollDie() + rollDie();
+    }
+
+    // Initialize an array to store the count of each sum
+    let sumCounts = Array(11).fill(0); // Indices 0 to 10 represent sums 2 to 12
+
+    // Simulate rolling the dice 36,000 times
+    const totalRolls = 36000;
+    for (let i = 0; i < totalRolls; i++) {
+        const sum = rollDice();
+        sumCounts[sum - 2]++; // Increment the count for the corresponding sum
+    }
+
+    // Display results in an HTML table
+    document.write('<table>');
+    document.write('<tr><th>Sum</th><th>Frequency</th><th>Percentage</th></tr>');
+    
+    for (let i = 0; i < sumCounts.length; i++) {
+        const sum = i + 2; // Adjust index to represent the actual sum
+        const frequency = sumCounts[i];
+        const percentage = ((frequency / totalRolls) * 100).toFixed(2);
+
+        document.write(`<tr><td>${sum}</td><td>${frequency}</td><td>${percentage}%</td></tr>`);
+    }
+
+    document.write('</table>');
+</script>
+
+</body>
+</html>

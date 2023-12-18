@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mail-Order House</title>
+</head>
+<body>
+  <script>
+    var totalRetailValue = 0;
+    
+    while (true) {
+      var productNumber = parseInt(prompt("Enter product number (1-5) or -1 to quit:"));
+      
+      if (productNumber === -1) {
+        break; // Exit the loop when -1 is entered
+      }
+      
+      var quantitySold = parseInt(prompt("Enter quantity sold for one day:"));
+      
+      var retailPrice = 0;
+      
+      switch (productNumber) {
+        case 1:
+          retailPrice = 2.98;
+          break;
+        case 2:
+          retailPrice = 4.50;
+          break;
+        case 3:
+          retailPrice = 9.98;
+          break;
+        case 4:
+          retailPrice = 4.49;
+          break;
+        case 5:
+          retailPrice = 6.87;
+          break;
+        default:
+          alert("Invalid product number. Please enter a number between 1 and 5.");
+          continue; // Skip to the next iteration
+      }
+      
+      var productTotal = retailPrice * quantitySold;
+      totalRetailValue += productTotal;
+    }
+    
+    // Output the total retail value in HTML5 format
+    document.write("<h2>Total Retail Value of Products Sold Last Week</h2>");
+    document.write("<p>Total: $" + totalRetailValue.toFixed(2) + "</p>");
+  </script>
+</body>
+</html>
